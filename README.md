@@ -1,2 +1,2 @@
-dd# dic
+#dic
 To be announced
