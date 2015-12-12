@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>My Dictionary</title>
 </head>
-<body ng-app="">
+<body ng-app="dic" ng-controller="AppCtrl as app">
 
-{{ 2+2 }}
+<!--{{ 2+2 }}-->
+
+<ul>
+    <li ng-repeat="word in app.words">
+        {{ word.word }}
+    </li>
+</ul>
 
 <script src="bower_components/angular/angular.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
