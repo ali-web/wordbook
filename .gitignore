@@ -2,7 +2,7 @@
 /bin/config-depending.js
 
 npm-debug.log
-#node_modules
+node_modules
 
 /ssl
 
