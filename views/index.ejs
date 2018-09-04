@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+		<title>Wordbook - Build your own dictionary</title>
+		<meta name="description" content="Wordbook facilitates the process of learning new words in a more effective way. No matter what language you're trying to learn. Wordbook enables you to save new words you learn and align them with the sentence from which you learned the word and also specify other attributes for words which matter to you." />
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-route.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular-resource.js"></script>
+		<script src="javascripts/wordbook.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="stylesheets/style.css">
+	</head>
+	<body ng-app="wordbook">
+		<div id='main' class="container">
+			<nav class="navbar-fluid navbar-default navbar-fixed-top">
+				<div class="container">
+					    <a class="navbar-brand" href="/"> Wordbook </a>
+					    <p class="navbar-text"> Build your own dictionary</p>
+					    <p class="navbar-right navbar-text" ng-hide="authenticated"><a href="/login">Login</a> or <a href="/register">Register</a></p>
+					    <p class="navbar-right navbar-text" ng-show="authenticated"><a href="" ng-click="signout()">Logout</a></p>
+					    <p class="navbar-right navbar-text" ng-show="authenticated">Signed in as {{current_user}}</p>		
+				</div>
+			</nav>
+			<div class="col-md-offset-0">
+				<div ng-view>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-73788704-1', 'auto');
+	ga('send', 'pageview');
+
+</script>

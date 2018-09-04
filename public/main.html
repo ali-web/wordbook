@@ -1,0 +1,74 @@
+<div class="new-word-box" ng-show="authenticated">
+    <form ng-Submit="addWord()">
+        <h4>{{current_user}}, Do you have a new word?</h4>
+        <textarea required class="form-control new-word-input" maxlength="200" rows="1" placeholder="What is the new word?" ng-keypress="suggestMeanings()" ng-model="newWord.text"></textarea>
+        <textarea class="form-control rtl new-meaning-input" maxlength="200" rows="1" placeholder="What is the meaning?" ng-model="newWord.meaning"></textarea>
+        <select ng-model="newWord.kind" class="form-control">
+            <option disabled selected> -- select an option -- </option>
+            <option value="verb">verb</option>
+            <option value="noun">noun</option>
+            <option value="adjective">adjective</option>
+            <option value="adverb">adverb</option>
+            <option value="expression">expression</option>
+            <option value="idiom">idiom</option>
+            <option value="sentence">sentence</option>
+        </select>
+        <select ng-model="newWord.formality" class="form-control">
+            <option disabled selected> -- select an option -- </option>
+            <option value="informal">informal</option>
+            <option value="slang">slang</option>
+            <option value="formal">formal</option>
+        </select>
+        <textarea class="form-control new-meaning-input" maxlength="200" rows="1" placeholder="The English definition?" ng-model="newWord.definition"></textarea>
+        <textarea class="form-control new-example-input" maxlength="200" rows="2" placeholder="Any examples?" ng-model="newWord.example"></textarea>
+        <textarea class="form-control new-hashtag-input" maxlength="200" rows="1" placeholder="How found?" ng-model="newWord.found"></textarea>
+        <textarea class="form-control new-hashtag-input" maxlength="200" rows="1" placeholder="Any hashtags?" ng-model="newWord.hashtag"></textarea>
+        <textarea class="form-control new-hashtag-input" maxlength="200" rows="1" placeholder="Synonyms?" ng-model="newWord.synonym"></textarea>
+        <textarea class="form-control new-hashtag-input" maxlength="200" rows="1" placeholder="Antonyms?" ng-model="newWord.antonym"></textarea>
+        <textarea class="form-control new-hashtag-input" maxlength="200" rows="1" placeholder="Family members?" ng-model="newWord.family"></textarea>
+        <input class="btn submit-btn pull-right" type="submit" value="Add word" />
+    </form>
+</div>
+
+<p ng-show="authenticated">{{ words.length }} words till now</p>
+
+<h2 ng-hide="authenticated">Learn vocabulary by building your own dictionary using wordbook</h2>
+<br/>
+<br/>
+<p ng-hide="authenticated">Wordbook facilitates the process of learning new words in a more effective way. No matter what
+    language you're trying to learn. Wordbook enables you to save new words you learn and align them with the sentence
+    from which you learned the word and also specify other attributes for words which matter to you.
+</p>
+<br/>
+<br/>
+<p ng-hide="authenticated">If this is the first time you are visiting wordbook, click on Register link
+    at the top-right corner of the page to register and start creating your own vocabulary.
+</p>
+
+<table class="phrasebook normal-border table-striped" ng-show="authenticated">
+    <tr>
+        <th>word</th>
+        <th>kind</th>
+        <th>meaning</th>
+        <th>definition</th>
+        <th>example</th>
+        <th>synonyms</th>
+        <th>antonyms</th>
+        <th>family</th>
+        <th>found</th>
+        <th>hashtags</th>
+    </tr>
+	<tr ng-repeat="word in words" ng-class-odd="odd" ng-class-even="even">
+		<td class="word-text">{{ word.text }}</td>
+		<td class="word-text">{{ word.kind }}</td>
+		<td class="word-meaning">{{ word.meaning.join("، ") }}</td>
+		<td class="word-meaning">{{ word.definition }}</td>
+		<td class="word-example">{{ word.example }}</td>
+		<td class="word-example">{{ word.synonym.join(", ") }}</td>
+		<td class="word-example">{{ word.antonym.join(", ") }}</td>
+		<td class="word-example">{{ word.created_at }}</td>
+		<td class="word-example">{{ word.family.join(", ") }}</td>
+		<td class="word-example">{{ word.found.join(" ") }}</td>
+		<td class="word-example">{{ word.hashtag.join(" ") }}</td>
+	</tr>
+</table>
