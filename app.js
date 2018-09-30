@@ -30,7 +30,7 @@ function wwwHttpsRedirect(req, res, next) {
 
 //this terrible line causes non-green https on browsers!!!
 //app.set('trust proxy', true);
-if (!is_localhost){
+if (process.env.IS_LOCALHOST === 'no'){
     app.use(wwwHttpsRedirect);
 }
 

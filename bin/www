@@ -36,7 +36,7 @@ http.get('*', function(req,res){
 http.createServer(app).listen(3000);
 // Create an HTTPS service identical to the HTTP service.
 
-if (!is_localhost) {
+if (process.env.IS_LOCALHOST === 'no') {
   var options = {
     key: fs.readFileSync(__dirname + '/../ssl/key.pem', 'utf8'),
     cert: fs.readFileSync(__dirname + '/../ssl/wordbook_me.crt', 'utf8')
