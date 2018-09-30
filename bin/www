@@ -22,11 +22,6 @@ var app_domain = 'wordbook.me';
 });*/
 
 
-var options = {
-  key: fs.readFileSync(__dirname + '/../ssl/key.pem', 'utf8'),
-  cert: fs.readFileSync(__dirname + '/../ssl/wordbook_me.crt', 'utf8')
-};
-
 // Create a service (the app object is just a callback).
 //var app = express();
 
@@ -41,6 +36,11 @@ http.get('*', function(req,res){
 http.createServer(app).listen(3000);
 // Create an HTTPS service identical to the HTTP service.
 
-if (!is_localhost){
+if (!is_localhost) {
+  var options = {
+    key: fs.readFileSync(__dirname + '/../ssl/key.pem', 'utf8'),
+    cert: fs.readFileSync(__dirname + '/../ssl/wordbook_me.crt', 'utf8')
+  };
+    
   https.createServer(options, app).listen(3001);
 }
