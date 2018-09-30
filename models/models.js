@@ -44,20 +44,6 @@ var wordSchema = new mongoose.Schema({
 	created_at: {type: Date, default: Date.now}
 });
 
-/*
-var wordSchema = new mongoose.Schema({
-	text: String,
-	meanings_as_noun: [{type: Object}],
-	meanings_as_verb: [{type: Object}],
-	meanings_as_adjective: [{type: Object}],
-	meanings_as_adverb: [{type: Object}],
-	example: String,
-	creator: String,
-	created_at: {type: Date, default: Date.now}
-});
-*/
-
-
 mongoose.model('Post', postSchema);
 mongoose.model('User', userSchema, 'user');
 mongoose.model('Word', wordSchema, 'word');
