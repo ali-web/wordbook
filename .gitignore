@@ -1,5 +1,4 @@
 .DS_Store
-/bin/config-depending.js
 
 npm-debug.log
 node_modules
