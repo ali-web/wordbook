@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
+    "bluebird": "^3.5.2",
     "body-parser": "~1.8.1",
     "bson": "^1.0.4",
     "cheerio": "latest",
