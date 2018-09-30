@@ -1,30 +1,28 @@
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 // var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var passport = require('passport');
-//initialize mongoose schemas
-require('./models/models');
-var index = require('./routes/index');
-var api = require('./routes/api');
-var authenticate = require('./routes/authenticate')(passport);
-var mongoose = require('mongoose');                         //add for Mongo support
-mongoose.connect('mongodb://localhost/dic2');              //connect to Mongo
-var app = express();
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('passport');
+
+const index = require('./routes/index');
+const api = require('./routes/api');
+const authenticate = require('./routes/authenticate')(passport);
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/dic2');
+const app = express();
 
 //to redirect non-www to www and https
 function wwwHttpsRedirect(req, res, next) {
-    //console.log('hala');
     if (req.headers.host.slice(0, 4) !== 'www.' || req.protocol === 'http') {
         if (req.headers.host.slice(0, 4) !== 'www.'){
             var newHost = 'www.' + req.headers.host;
         } else {
             var newHost = req.headers.host;
         }
-        //return res.redirect(301, req.protocol + '://' + newHost + req.originalUrl);
         return res.redirect(301, 'https' + '://' + newHost + req.originalUrl);
     }
     next();
@@ -44,17 +42,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 
-/*var MongoStore = require('connect-mongo/es5')(session);
-
-
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'keyboard cat',
-    resave: false,
-    saveUninitialized: false,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));*/
-
-var MongoStore = require('connect-mongo/es5')(session);
+const MongoStore = require('connect-mongo/es5')(session);
 
 app.use(session({
     secret:'keyboard cat',
@@ -69,11 +57,6 @@ app.use(session({
         })
 }));
 
-/*app.use(session({
-  secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true
-}));*/
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -93,7 +76,7 @@ app.use(function(req, res, next) {
 });
 
 //// Initialize Passport
-var initPassport = require('./passport-init');
+const initPassport = require('./lib/passport-init');
 initPassport(passport);
 
 // error handlers
@@ -119,7 +102,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 
 module.exports = app;
